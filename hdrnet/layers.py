@@ -75,6 +75,8 @@ def fc(inputs, num_outputs,
     else:
       b_init = None
 
+  if isinstance(num_outputs, np.int64):
+    num_outputs = np.int64(num_outputs).item()
   output = tf.contrib.layers.fully_connected(
       inputs=inputs,
       num_outputs=num_outputs,
