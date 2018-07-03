@@ -185,7 +185,7 @@ class ImageFilesDataPipeline(DataPipeline):
     if not check_dir(dirname):
       raise ValueError("Invalid data path.")
     with open(self.path, 'r') as fid:
-      flist = [l.strip() for l in fid.xreadlines()]
+      flist = [l.strip() for l in fid]
 
     if self.shuffle:
       random.shuffle(flist)
@@ -197,7 +197,7 @@ class ImageFilesDataPipeline(DataPipeline):
 
     input_queue, output_queue = tf.train.slice_input_producer(
         [input_files, output_files], shuffle=self.shuffle,
-        seed=0123, num_epochs=self.num_epochs)
+        seed=123, num_epochs=self.num_epochs)
 
     if '16-bit' in magic.from_file(input_files[0]):
       input_dtype = tf.uint16
