@@ -185,7 +185,7 @@ class ImageFilesDataPipeline(DataPipeline):
     if not check_dir(dirname):
       raise ValueError("Invalid data path.")
     with open(self.path, 'r') as fid:
-      flist = [l.strip() for l in fid.xreadlines()]
+      flist = [l.strip() for l in fid]
 
     if self.shuffle:
       random.shuffle(flist)
