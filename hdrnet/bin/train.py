@@ -113,12 +113,12 @@ def main(args, model_params, data_params):
 
     reg_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
     if reg_losses and args.weight_decay is not None and args.weight_decay > 0:
-      print "Regularization losses:"
+      print("Regularization losses:")
       for rl in reg_losses:
-        print " ", rl.name
+        print(" ", rl.name)
       opt_loss = loss + args.weight_decay*sum(reg_losses)
     else:
-      print "No regularization."
+      print("No regularization.")
       opt_loss = loss
 
     with tf.control_dependencies([updates]):
